@@ -16,43 +16,45 @@ public class MainActivity2 extends AppCompatActivity {
     Button button2;
     EditText editView;
     private SharedPreferences myPreferenceRef;
-    private SharedPreferences.Editor myPreferenceEditor;
+
     Button knapp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-
-        editView = findViewById(R.id.editView);
+       // myPreferenceEditor = myPreferenceRef.edit();
         TextView prefTextRef = findViewById(R.id.prefText);
         button2 = findViewById(R.id.button2);
-        myPreferenceRef = getPreferences(MODE_PRIVATE);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("==>", "Back button pressed");
-                Intent intent = new Intent(MainActivity2.this, MainActivity.class);
-                startActivity(intent);
-            }
+        myPreferenceRef = getSharedPreferences("editView", MODE_PRIVATE);
+        button2.setOnClickListener((v)-> {finish();} );
 
-
-        });
-
+        editView = findViewById(R.id.editView);
         knapp = findViewById(R.id.knapp);
-        button2.setOnClickListener(new View.OnClickListener() {
+        myPreferenceRef = getPreferences(MODE_PRIVATE);
+
+
+        knapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TextView prefTextRef;
-                String prefString = editView.getText().toString();
-                myPreferenceEditor.putString("save", prefString);
-                myPreferenceEditor.apply();
-                finish();
+                SharedPreferences.Editor editor = myPreferenceRef.edit();
+              //  String prefString = editView.getText().toString();
+                editor.putString("editView", editView.getText().toString());
+               // prefTextRef.setText(myPreferenceRef.getString("namn", "No preference found."));
+                editor.apply();
+
             }
         });
     }
 }
 /*
+@Override
+            public void onClick(View view) {
+                Log.d("==>", "Back button pressed");
+                Intent intent = new Intent(MainActivity2.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 button2.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity2.this, MainActivity.class));
         });

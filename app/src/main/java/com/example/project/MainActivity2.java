@@ -17,7 +17,7 @@ public class MainActivity2 extends AppCompatActivity {
     EditText editView;
     private SharedPreferences myPreferenceRef;
     private SharedPreferences.Editor myPreferenceEditor;
-
+    Button knapp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +39,13 @@ public class MainActivity2 extends AppCompatActivity {
 
         });
 
-
+        knapp = findViewById(R.id.knapp);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TextView prefTextRef;
                 String prefString = editView.getText().toString();
-                myPreferenceEditor.putString("MyAppPreferenceString", prefString);
+                myPreferenceEditor.putString("save", prefString);
                 myPreferenceEditor.apply();
                 finish();
             }

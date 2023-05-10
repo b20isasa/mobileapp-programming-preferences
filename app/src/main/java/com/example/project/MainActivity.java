@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences myPreferenceRef;
     private SharedPreferences.Editor myPreferenceEditor;
     private RecyclerView recyclerView;
+    private TextView textView;
     Button button_main;
 
 
@@ -24,12 +25,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        textView = findViewById(R.id.textView);
         recyclerView = findViewById(R.id.recyclerView);
         button_main = findViewById(R.id.button_main);
+
         myPreferenceRef = getPreferences(MODE_PRIVATE);
         myPreferenceEditor = myPreferenceRef.edit();
+
         button_main.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this, MainActivity2.class));
         });
@@ -41,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         TextView prefTextRef = new TextView(this);
         prefTextRef = (TextView)findViewById(R.id.prefText);
-        prefTextRef.setText(myPreferenceRef.getString("MyAppPreferenceString", "No preference found."));
+        prefTextRef.setText(myPreferenceRef.getString("save", "No preference found."));
     }
 }
 

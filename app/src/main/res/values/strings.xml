@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Shared Preferences</string>
+    <string name="app_name">skriv in ditt namn </string>
     <string name="save">save</string>
 </resources>

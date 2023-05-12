@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class MainActivity2 extends AppCompatActivity {
     Button button2;
-    EditText editView;
+    EditText name;
     private SharedPreferences myPreferenceRef;
 
     Button knapp;
@@ -24,43 +24,21 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
        // myPreferenceEditor = myPreferenceRef.edit();
-        TextView prefTextRef = findViewById(R.id.prefText);
+       //TextView prefTextRef = findViewById(R.id.prefText);
+        name = findViewById(R.id.editView);
+        myPreferenceRef = getSharedPreferences("MypreferencesRef", MODE_PRIVATE);
+
         button2 = findViewById(R.id.button2);
-        myPreferenceRef = getSharedPreferences("editView", MODE_PRIVATE);
         button2.setOnClickListener((v)-> {finish();} );
+        //myPreferenceRef = getPreferences(MODE_PRIVATE);
 
-        editView = findViewById(R.id.editView);
         knapp = findViewById(R.id.knapp);
-        myPreferenceRef = getPreferences(MODE_PRIVATE);
-
-
-        knapp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        knapp.setOnClickListener((v)->  {
                 SharedPreferences.Editor editor = myPreferenceRef.edit();
               //  String prefString = editView.getText().toString();
-                editor.putString("editView", editView.getText().toString());
-               // prefTextRef.setText(myPreferenceRef.getString("namn", "No preference found."));
+                editor.putString("name", name.getText().toString());
+               // prefTextRef.setText(myPreferenceRef.getString("name", "No preference found."));
                 editor.apply();
-
-            }
         });
     }
 }
-/*
-@Override
-            public void onClick(View view) {
-                Log.d("==>", "Back button pressed");
-                Intent intent = new Intent(MainActivity2.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-button2.setOnClickListener(view -> {
-            startActivity(new Intent(MainActivity2.this, MainActivity.class));
-        });
-
-        TextView prefTextRef;
-        TextView prefTextRef = new TextView(this);
-        prefTextRef=(TextView)findViewById(R.id.prefText);
-
- */

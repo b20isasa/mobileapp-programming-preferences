@@ -16,8 +16,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences myPreferenceRef;
-    private SharedPreferences.Editor myPreferenceEditor;
-    private RecyclerView recyclerView;
     private TextView textView;
     Button button;
 
@@ -28,10 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        myPreferenceRef = getSharedPreferences("MyPreferenceName", MODE_PRIVATE);
         textView = findViewById(R.id.textView);
-        myPreferenceRef = getSharedPreferences("preferences", MODE_PRIVATE);
-        recyclerView = findViewById(R.id.recyclerView);
         button = findViewById(R.id.button);
         button.setOnClickListener(new android.view.View.OnClickListener(){
             @Override
@@ -46,9 +42,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        String name = myPreferenceRef.getString("preferences", "No preference found.");
+        String name = myPreferenceRef.getString("userinput", "No preference found.");
         textView.setText(name);
     }
 }
-
+/* SharedPreferences myPreferenceRef = getPreferences("pref", MODE_PRIVATE);
+        SharedPreferences.Editor myPreferenceEditor = myPreferenceRef.edit();
+        myPreferenceRef = getPreferences(MODE_PRIVATE);
+        myPreferenceEditor = myPreferenceRef.edit();*/
 

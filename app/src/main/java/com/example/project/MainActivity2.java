@@ -20,6 +20,8 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       myPreferenceRef = getSharedPreferences("MyPreferenceName", MODE_PRIVATE);
+        //myPreferenceEditor = myPreferenceRef.edit();
         setContentView(R.layout.activity_main2);
         SharedPreferences.Editor myPreferenceEditor = myPreferenceRef.edit();
         button2 = findViewById(R.id.button2);
@@ -33,14 +35,10 @@ public class MainActivity2 extends AppCompatActivity {
         });
         name = findViewById(R.id.name);
         knapp = findViewById(R.id.knapp);
-        myPreferenceRef = getSharedPreferences("preferences", MODE_PRIVATE);
-        knapp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences.Editor editor = myPreferenceRef.edit();
-                editor.putString("name", name.getText().toString());
-                editor.apply();
-            }
-        });
+       knapp.setOnClickListener((v)->{
+          SharedPreferences.Editor editor = myPreferenceRef.edit();
+          editor.putString("userinput",name.getText().toString());
+          editor.apply();
+      });
     }
 }
